@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<header>
-	{% include "_navbar.html.twig" %}
-</header>
-
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -21,6 +17,10 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body class="bg-secondary text-dark"> {% block body %}{% endblock %}
-		</body>
-	</html>
+	<body class="bg-secondary text-dark">
+		<header>
+			{% include "_navbar.html.twig" %}
+		</header>
+		{% block body %}{% endblock %}
+	</body>
+</html>

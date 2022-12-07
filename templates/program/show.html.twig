@@ -14,7 +14,24 @@
 		</div>
 	</div>
 
+	{% for season in seasons %}
+		<div>
+			<a href="{{ path('program_season_show', { programId: program.id, seasonId: season.id }) }}">
+				<h2>
+					{{ loop.index }}
+					/ Saison
+					{{ season.number }}
+					- Année de parution :
+					{{ season.year }}
+				</h2>
+			</a>
+		</div>
+	{% else %}
+		Aucune saison n'est trouvée.
+		<br>
+	{% endfor %}
+
 	<a href="{{ path('program_index') }}">
-		Retour à la liste des programmes
+		Retour à la liste des séries
 	</a>
 {% endblock %}

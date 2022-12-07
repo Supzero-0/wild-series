@@ -6,6 +6,7 @@ use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -21,6 +22,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create();
 
         foreach (self::SERIES as $key => $values) {
             $program = new Program();
@@ -28,6 +30,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setSynopsis($values['synopsis']);
             $program->setCategory($this->getReference($values['category']));
             $manager->persist($program);
+            $this->addReference('program_' . $key, $program);
         }
         $manager->flush();
     }

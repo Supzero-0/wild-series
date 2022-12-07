@@ -13,7 +13,7 @@
 			<h3>
 				{{ episode.title }}
 			</h3><br>
-			<p>Nombre d'épisodes :
+			<p>Episode n°
 				{{ episode.number }}</p>
 			<p>Résumé :
 				{{ episode.synopsis }}</p>
@@ -23,7 +23,7 @@
 		<br>
 	{% endfor %}
 
-	<a href="{{ path('program_index') }}">
-		Retour à la liste des séries
+	<a href="{{ path("program_show", { id: program.id }) }}">
+		Retour à la liste des saisons
 	</a>
 {% endblock %}

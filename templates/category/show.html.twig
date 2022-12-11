@@ -15,7 +15,7 @@
 				{{ programInCategory.title }}
 			</h2>
 			<p>{{ programInCategory.synopsis }}</p>
-			<a href="{{ path("program_show", { seasonId: programInCategory.id }) }}">Voir la fiche</a>
+			<a href="{{ path("program_show", { program_id: programInCategory.id }) }}">Voir la fiche</a>
 		</div>
 	{% else %}
 		Aucune série n'est trouvée.

@@ -17,6 +17,7 @@ class Program
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'programs')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private ?Category $category = null;
 
     #[ORM\Column(length: 255)]

@@ -12,8 +12,10 @@ use App\Repository\ProgramRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/program', name: 'program_')]
 
@@ -21,8 +23,10 @@ class ProgramController extends AbstractController
 {
     #[Route('/', name: 'index')]
 
-    public function index(ProgramRepository $programRepository): Response
+    public function index(ProgramRepository $programRepository, RequestStack $requestStack): Response
     {
+        $session = $requestStack->getSession();
+
         $programs = $programRepository->findAll();
 
         return $this->render(
@@ -42,6 +46,8 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $programRepository->save($program, true);
+
+            $this->addFlash('success', 'The new program has been created');
 
             return $this->redirectToRoute('program_index');
         }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor
+{% endblock %}
+
+{% block body %}
+	<h1>Actor</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ actor.id }}</td>
+			</tr>
+			<tr>
+				<th>Firstname</th>
+				<td>{{ actor.firstname }}</td>
+			</tr>
+			<tr>
+				<th>Lastname</th>
+				<td>{{ actor.lastname }}</td>
+			</tr>
+			<tr>
+				<th>Birthday</th>
+				<td>{{ actor.birthdate|date('d-m-Y') }}</td>
+			</tr>
+			{% for program in programs %}
+				<tr>
+					<th>Program</th>
+					<td>
+						<a href="{{ path('program_show', { "program_id": program.id}) }}">
+							{{ program.title }}
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+
+
+		</tbody>
+	</table>
+
+	<a href="{{ path('actor_index') }}">Retour à la liste</a>
+
+
+{% endblock %}

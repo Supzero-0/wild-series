@@ -72,6 +72,26 @@ class ProgramController extends AbstractController
         return $this->render('program/show.html.twig', ['program' => $program, 'seasons' => $seasons]);
     }
 
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Program $program, ProgramRepository $programRepository): Response
+    {
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $programRepository->save($program, true);
+
+            $this->addFlash('success', 'The program has been modified');
+
+            return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('program/edit.html.twig', [
+            'program' => $program,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{program_id}/seasons/{season_id}', methods: ['GET'], requirements: ['id' => '\d+'], name: 'season_show')]
     #[Entity('program', options: ['mapping' => ['program_id' => 'id']])]
     #[Entity('season', options: ['mapping' => ['season_id' => 'id']])]

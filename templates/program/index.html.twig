@@ -15,6 +15,7 @@
 				{{ program.category.name }}</h2>
 			<p>{{ program.synopsis }}</p>
 			<a href="{{ path("program_show", { "program_id": program.id }) }}">Voir la fiche</a>
+			<a href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>
 		</div>
 	{% else %}
 		Aucune série trouvée.

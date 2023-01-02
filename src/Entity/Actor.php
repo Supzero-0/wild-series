@@ -97,4 +97,9 @@ class Actor
 
         return $this;
     }
+
+    public function getName(): string
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
+    }
 }

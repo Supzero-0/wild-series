@@ -13,6 +13,7 @@
 				{{ program.title }}
 				- Catégorie :
 				{{ program.category.name }}</h2>
+			<img class="align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }}">
 			<p>{{ program.synopsis }}</p>
 			<a href="{{ path("program_show", { "program_id": program.id }) }}">Voir la fiche</a>
 			<a href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>

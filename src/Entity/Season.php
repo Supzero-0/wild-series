@@ -34,7 +34,8 @@ class Season
 
     public function __construct()
     {
-        $this->title = new ArrayCollection();
+        $this->program = new ArrayCollection();
+        $this->episodes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,22 +99,22 @@ class Season
         return $this->episodes;
     }
 
-    public function addEpisode(Episode $episode): self
+    public function addEpisode(Episode $episodes): self
     {
-        if (!$this->episode->contains($episode)) {
-            $this->episode->add($episode);
-            $episode->setSeason($this);
+        if (!$this->episodes->contains($episodes)) {
+            $this->episodes->add($episodes);
+            $episodes->setSeason($this);
         }
 
         return $this;
     }
 
-    public function removeEpisode(Episode $episode): self
+    public function removeEpisode(Episode $episodes): self
     {
-        if ($this->episode->removeElement($episode)) {
+        if ($this->episodes->removeElement($episodes)) {
             // set the owning side to null (unless already changed)
-            if ($episode->getSeason() === $this) {
-                $episode->setSeason(null);
+            if ($episodes->getSeason() === $this) {
+                $episodes->setSeason(null);
             }
         }
 

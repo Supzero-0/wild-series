@@ -32,4 +32,19 @@
 	<a href="{{ path('episode_edit', {'id': episode.id}) }}">Editer</a>
 
 	{{ include('episode/_delete_form.html.twig') }}
+
+	{% if is_granted('ROLE_USER') %}
+		{{ include('comment/_form.html.twig') }}
+	{% endif %}
+
+	{% for comments in episode.comments %}
+		<div>
+			<h3>{{ comments.author.email }}</h3>
+			<p>{{ comments.rate }}</p>
+			<p>{{ comments.comment }}</p>
+		</div>
+	{% else %}
+		Pas de commentaires trouvés
+	{% endfor %}
+
 {% endblock %}

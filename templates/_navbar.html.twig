@@ -22,6 +22,14 @@
 					<a class="nav-link" href="/episode/">Episodes</a>
 				</li>
 			</ul>
+			{% if app.user %}
+				{{ app.user.email }}
+				<a href="{{ path('app_logout') }}" class="btn btn-dark">
+					Se déconnecter</a>
+			{% else %}
+				<a href="{{ path('app_login') }}" class="btn btn-dark">
+					Se connecter</a>
+			{% endif %}
 			<form class="d-flex">
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">Search</button>
